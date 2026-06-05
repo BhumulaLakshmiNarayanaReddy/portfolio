@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakshmi Narayana Reddy | AIML Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .skill-tag {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            background-color: var(--primary);
+            color: white;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <nav class="fixed top-0 w-full z-50 glass py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <div class="text-xl font-bold gradient-text">BLNR</div>
+            <a href="assets/resume.pdf" target="_blank"
+            class="hidden sm:flex items-center gap-2 text-sm font-semibold border border-blue-500/30 px-4 py-2 rounded-full hover:bg-blue-600 hover:text-white transition-all">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+                Resume
+            </a>
+        </div>
+        <div class="hidden md:flex space-x-8 items-center">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="md:hidden flex items-center gap-4">
+            <button id="menu-btn" class="p-2">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-slate-950/95 backdrop-blur-xl hidden flex-col items-center justify-center space-y-8 text-2xl transition-all duration-300">
+        <button onclick="toggleMenu()" class="absolute top-6 right-6 p-2">
+            <i data-lucide="x"></i>
+        </button>
+        <a href="#about" onclick="toggleMenu()" class="hover:text-blue-500 font-semibold">About</a>
+        <a href="#skills" onclick="toggleMenu()" class="hover:text-blue-500 font-semibold">Skills</a>
+        <a href="projects.html" onclick="toggleMenu()" class="hover:text-blue-500 font-semibold">Projects</a>
+        <a href="#contact" onclick="toggleMenu()" class="hover:text-blue-500 font-semibold">Contact</a>
+    </div>
+
+    <section class="min-h-screen flex items-center justify-center px-6 pt-24">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center w-full">
+            
+            <div class="reveal text-center md:text-left order-2 md:order-1">
+                <span class="px-4 py-1 rounded-full border border-blue-500/30 text-blue-500 text-sm font-medium mb-6 inline-block">
+                    Open for Internships & Job Opportunities
+                </span>
+
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                    Hi, I'm <span class="gradient-text">Lakshmi Narayana Reddy</span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-slate-400 max-w-xl mb-10">
+                    an AIML student at the intersection of
+                    <span class="text-white font-semibold">Machine Learning</span> and
+                    <span class="text-white font-semibold">Backend Systems</span>.
+                </p>
+
+                <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
+                    <a href="projects.html"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium flex items-center justify-center gap-2 transition-all">
+                    View Projects <i data-lucide="arrow-right"></i>
+                    </a>
+
+                    <a href="mailto:bhumulalakshminarayanareddy@gmail.com"
+                    class="border border-slate-700 hover:border-blue-500 px-8 py-3 rounded-full font-medium flex items-center justify-center gap-2 transition-all">
+                    Contact Me <i data-lucide="mail"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="reveal flex flex-col items-center justify-center order-1 md:order-2">
+                <div class="relative group mb-8">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                    
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px] rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl">
+                        <img src="images/profile.jpg"
+                            onerror="this.src='images/profile.png'"
+                            alt="Lakshmi Narayana Reddy"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center gap-10 w-full text-slate-400">
+                    <a href="https://github.com/BhumulaLakshmiNarayanaReddy" target="_blank" 
+                       class="group/icon flex flex-col items-center gap-2 hover:text-white transition-all">
+                        <div class="p-3 glass rounded-full group-hover/icon:bg-blue-600/20 group-hover/icon:border-blue-500 transition-all">
+                            <i data-lucide="github" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-xs font-semibold tracking-widest uppercase opacity-0 group-hover/icon:opacity-100 transition-opacity">GitHub</span>
+                    </a>
+
+                    <div class="h-8 w-px bg-slate-800"></div>
+
+                    <a href="https://www.linkedin.com/in/lakshmi-narayana-reddy-bhumula" target="_blank" 
+                       class="group/icon flex flex-col items-center gap-2 hover:text-white transition-all">
+                        <div class="p-3 glass rounded-full group-hover/icon:bg-blue-600/20 group-hover/icon:border-blue-500 transition-all">
+                            <i data-lucide="linkedin" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-xs font-semibold tracking-widest uppercase opacity-0 group-hover/icon:opacity-100 transition-opacity">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 md:px-12 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <h2 class="text-3xl font-bold mb-6">About <span class="text-blue-500">Me</span></h2>
+                <div class="space-y-4 text-slate-400 leading-relaxed text-lg">
+                    <p class="text-lg md:text-xl text-slate-400 max-w-xl mb-10">
+                    I am a 2nd-year B.Tech student specializing in <span class="text-white font-semibold">Artificial Intelligence & Machine Learning</span> with a strong focus on becoming a backend and machine learning engineer.
+                    My current journey is centered on mastering core programming, <span class="text-white font-semibold">Data Structures</span>, and real-world development practices.
+                    I consistently turn concepts into working projects while deepening my understanding of <span class="text-white font-semibold">Backend Engineering</span> and <span class="text-white font-semibold">Deep Learning</span>.
+                    My goal is to build scalable systems that take machine learning models from experimentation to real-world deployment.
+                    </p>
+                </div>
+            </div>
+            <div class="reveal flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80">
+                    <div class="absolute inset-0 bg-blue-600 rounded-2xl rotate-6 opacity-20"></div>
+                    <div class="absolute inset-0 border-2 border-blue-500 rounded-2xl -rotate-3"></div>
+                    <div 
+                    class="absolute inset-0 glass rounded-2xl overflow-hidden flex items-center justify-center cursor-pointer group"
+                    onclick="nextAboutImage()"
+                    >
+                    <img 
+                        id="about-image"
+                        src="images/about1.jpg"
+                        class="w-full h-full object-cover transition-opacity duration-300"
+                        alt="About Lakshmi Narayana"
+                    >
+                    <div class="absolute inset-0 flex items-end justify-center pb-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-xs text-white font-medium">Click to see more</span>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 px-6 md:px-12 bg-black/20">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center reveal">Technical <span class="text-blue-500">Toolbox</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="reveal glass p-8 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-6"><i data-lucide="code-2" class="text-blue-500"></i><h3 class="text-xl font-bold">Languages</h3></div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-4 py-2 glass rounded-lg text-sm">Python</span>
+                        <span class="skill-tag px-4 py-2 glass rounded-lg text-sm">Java</span>
+                        <span class="skill-tag px-4 py-2 glass rounded-lg text-sm">SQL</span>
+                    </div>
+                </div>
+                <div class="reveal glass p-8 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-6"><i data-lucide="layers" class="text-purple-500"></i><h3 class="text-xl font-bold">Tools</h3></div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-4 py-2 glass rounded-lg text-sm">Flask</span>
+                        <span class="skill-tag px-4 py-2 glass rounded-lg text-sm">Git</span>
+                        <span class="skill-tag px-4 py-2 glass rounded-lg text-sm">Linux</span>
+                    </div>
+                </div>
+                <div class="reveal glass p-8 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-6"><i data-lucide="brain-circuit" class="text-emerald-500"></i><h3 class="text-xl font-bold">AI & ML</h3></div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-4 py-2 glass rounded-lg text-sm">LLMs</span>
+                        <span class="skill-tag px-4 py-2 glass rounded-lg text-sm">Neural Networks</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-6 md:px-12 max-w-6xl mx-auto">
+        <div class="reveal glass rounded-3xl p-6 md:p-16">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl font-bold mb-4">Let's <span class="text-blue-500">Connect</span></h2>
+                    <p class="text-slate-400 mb-8 text-lg">My inbox is always open!</p>
+                    <div class="flex flex-col items-center md:items-start gap-6">
+                        <div class="flex items-center gap-4 group">
+                            <div class="p-3 glass rounded-xl text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <a href="mailto:bhumulalakshminarayanareddy@gmail.com" class="hover:text-blue-500 transition-colors break-all text-sm md:text-base">
+                                bhumulalakshminarayanareddy@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="contact-form" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" name="from_name" placeholder="Name" required 
+                            class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-4 text-white focus:border-blue-500 outline-none transition-all">
+                        <input type="email" name="from_email" placeholder="Email" required 
+                            class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-4 text-white focus:border-blue-500 outline-none transition-all">
+                    </div>
+                    <textarea name="message" rows="5" placeholder="How can I help you?" required 
+                        class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-4 text-white focus:border-blue-500 outline-none transition-all"></textarea>
+                    
+                    <button type="submit" id="submit-btn" 
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-900/20 active:scale-[0.98] transition-all">
+                        Send Message
+                    </button>
+                    <p id="form-status" class="hidden text-sm text-center mt-4 font-semibold"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-slate-800 text-center text-slate-500">
+        <p>© 2024 Lakshmi Narayana Reddy Bhumula.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        (function() { emailjs.init("6szh_W0Xhcw7HUyXo"); })();
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        }
+        if(menuBtn) menuBtn.addEventListener('click', toggleMenu);
+
+        // Reveal Animation
+        function reveal() {
+            document.querySelectorAll('.reveal').forEach(r => {
+                if (r.getBoundingClientRect().top < window.innerHeight - 100) r.classList.add('active');
+            });
+        }
+        window.addEventListener('scroll', reveal); reveal();
+
+        // Contact Form Logic
+        const contactForm = document.getElementById('contact-form');
+        const statusMsg = document.getElementById('form-status');
+        const submitBtn = document.getElementById('submit-btn');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+            emailjs.sendForm('service_149148', 'template_6ewm0y3', this)
+                .then(() => {
+                    statusMsg.textContent = "Message sent successfully!";
+                    statusMsg.className = "text-green-500 text-center mt-4 font-semibold";
+                    submitBtn.innerText = "Send Message";
+                    submitBtn.disabled = false;
+                    contactForm.reset();
+                }, () => {
+                    statusMsg.textContent = "Failed to send message.";
+                    statusMsg.className = "text-red-500 text-center mt-4 font-semibold";
+                    submitBtn.innerText = "Send Message";
+                    submitBtn.disabled = false;
+                });
+        });
+
+        // --- SMART IMAGE LOADING LOGIC ---
+        let aboutIndex = 1;
+        const totalAboutImages = 6;
+        const extensions = ['.jpg', '.jpeg', '.png', '.JPG', '.PNG'];
+
+        function tryLoadImage(imgElement, basePath, index) {
+            let extIndex = 0;
+            function attempt() {
+                if (extIndex >= extensions.length) return;
+                const testUrl = `${basePath}${index}${extensions[extIndex]}`;
+                const tempImg = new Image();
+                tempImg.onload = () => {
+                    imgElement.src = testUrl;
+                    imgElement.style.opacity = 1;
+                };
+                tempImg.onerror = () => {
+                    extIndex++;
+                    attempt();
+                };
+                tempImg.src = testUrl;
+            }
+            attempt();
+        }
+
+        // Initial Load
+        tryLoadImage(document.getElementById('about-image'), 'images/about', 1);
+
+        function nextAboutImage() {
+            const img = document.getElementById('about-image');
+            aboutIndex = (aboutIndex % totalAboutImages) + 1;
+            img.style.opacity = 0;
+            setTimeout(() => {
+                tryLoadImage(img, 'images/about', aboutIndex);
+            }, 300);
+        }
+    </script>
+</body>
+</html>

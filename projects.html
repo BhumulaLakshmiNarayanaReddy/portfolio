@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Lakshmi Narayana Reddy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .project-card:hover .project-icon {
+            transform: scale(1.1) rotate(5deg);
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <nav class="fixed top-0 w-full z-50 glass py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="text-xl font-bold gradient-text">BLNR</div>
+        <a href="index.html" class="flex items-center gap-2 hover:text-blue-500 transition-colors">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            Back to Home
+        </a>
+    </nav>
+
+    <header class="pt-32 pb-16 px-6 text-center">
+        <div class="reveal active">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">My <span class="text-blue-500">Projects</span></h1>
+            <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+                A showcase of my journey in AI, Machine Learning, and Full-Stack development.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 gap-12">
+            
+            <section class="reveal glass rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl project-card active">
+                <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                    <div class="flex items-center gap-2 text-blue-500 mb-4 font-mono text-sm uppercase tracking-widest">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> AI Ecosystem
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Thambi AI</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        An intelligent automation hub. I built this to bridge mobile accessibility with high-level AI. It uses a Flutter frontend to interact with a Flask backend, leveraging the Gemini API for advanced logic and tasks.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Flutter</span>
+                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Flask (Python)</span>
+                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Gemini API</span>
+                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Automation</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/BhumulaLakshmiNarayanaReddy" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl flex items-center gap-2 transition-all">
+                            <i data-lucide="github" class="w-4 h-4"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 bg-slate-900/50 flex items-center justify-center p-12 relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#3b82f6_0%,_transparent_70%)]"></div>
+                    <i data-lucide="bot" class="w-32 h-32 text-blue-500/20 project-icon transition-transform duration-500"></i>
+                </div>
+            </section>
+
+            <!-- ===================== DUPLICATE PROJECT TEMPLATE ===================== -->
+            <!--
+            <section class="reveal glass rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl project-card">
+                
+                <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                    <div class="flex items-center gap-2 text-blue-500 mb-4 font-mono text-sm uppercase tracking-widest">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Project Category
+                    </div>
+
+                    <h3 class="text-3xl font-bold mb-4">Project Name</h3>
+
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        Short description of your project. Explain what problem it solves,
+                        what you built, and why it is useful.
+                    </p>
+
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Tech 1</span>
+                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Tech 2</span>
+                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Tech 3</span>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <a href="https://github.com/your-repo-link" target="_blank"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl flex items-center gap-2 transition-all">
+                            <i data-lucide="github" class="w-4 h-4"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 bg-slate-900/50 flex items-center justify-center p-12 relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#3b82f6_0%,_transparent_70%)]"></div>
+                    <i data-lucide="code" class="w-32 h-32 text-blue-500/20 project-icon transition-transform duration-500"></i>
+                </div>
+
+            </section>
+            -->
+            <!-- =================== END DUPLICATE PROJECT TEMPLATE =================== -->
+
+            <section class="reveal glass rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between border-dashed border-2 border-slate-700">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-slate-500">More Projects Coming Soon...</h3>
+                    <p class="text-slate-600 mt-2">Currently working on new ML models and API integrations.</p>
+                </div>
+                <i data-lucide="code" class="w-12 h-12 text-slate-700 mt-6 md:mt-0"></i>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-slate-800 text-center text-slate-500">
+        <p>© 2024 Lakshmi Narayana Reddy Bhumula. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', reveal);
+        reveal();
+    </script>
+</body>
+</html>

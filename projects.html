@@ -5,161 +5,348 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Lakshmi Narayana Reddy</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#050714',
+                        darkCard: 'rgba(12, 16, 40, 0.75)',
+                        lightBg: '#f0f7f9', // Pristine Sea Light Theme Background matching main landing page
+                        lightCard: 'rgba(255, 255, 255, 0.85)',
+                    }
+                }
+            }
+        }
+    </script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
     <style>
-        :root {
-            --primary: #3b82f6;
-        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f1f5f9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .glass-dark {
+            background: #0f172a !important;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(99,102,241,0.35);
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.5),
+                0 0 20px rgba(99,102,241,0.15);
         }
-        .gradient-text {
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .glass-light {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(14, 116, 144, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
         }
+
+        .glow-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(130px);
+            opacity: 0.2;
+            z-index: -1;
+            pointer-events: none;
+        }
+
         .reveal {
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.6s ease-out;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
-        .project-card:hover .project-icon {
-            transform: scale(1.1) rotate(5deg);
-            color: var(--primary);
-        }
     </style>
 </head>
-<body class="overflow-x-hidden">
-    <nav class="fixed top-0 w-full z-50 glass py-4 px-6 md:px-12 flex justify-between items-center">
-        <div class="text-xl font-bold gradient-text">BLNR</div>
-        <a href="index.html" class="flex items-center gap-2 hover:text-blue-500 transition-colors">
-            <i data-lucide="arrow-left" class="w-5 h-5"></i>
-            Back to Home
-        </a>
-    </nav>
+<body class="bg-lightBg text-slate-900 dark:bg-darkBg dark:text-slate-100 transition-colors duration-300">
 
-    <header class="pt-32 pb-16 px-6 text-center">
-        <div class="reveal active">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">My <span class="text-blue-500">Projects</span></h1>
-            <p class="text-slate-400 max-w-2xl mx-auto text-lg">
-                A showcase of my journey in AI, Machine Learning, and Full-Stack development.
-            </p>
-        </div>
+    <!-- Ambient background glows -->
+    <div class="fixed top-20 right-10 glow-orb bg-purple-600 dark:opacity-30 opacity-10"></div>
+    <div class="fixed bottom-20 left-10 glow-orb bg-blue-600 dark:opacity-30 opacity-10"></div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 px-4 sm:px-8 py-4">
+        <nav class="max-w-7xl mx-auto rounded-2xl
+        glass-light
+        dark:bg-slate-900
+        dark:border-indigo-500/30
+        transition-all duration-300
+        px-6 py-3 flex items-center justify-between
+        border border-cyan-500/10">
+            <a href="index.html#home" class="flex items-center gap-2 group">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white font-black text-xs leading-none shadow-md overflow-hidden">
+                    BLNR
+                </div>
+                <span class="font-bold text-lg tracking-wider hidden sm:inline-block text-slate-900 dark:text-slate-200 group-hover:text-blue-600 transition-colors">
+                    LAKSHMI NARAYANA REDDY
+                </span>
+            </a>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 border border-cyan-200 dark:border-indigo-500/30 hover:bg-cyan-100 dark:hover:bg-indigo-950 transition-all">
+                    <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-blue-500"></i> Back to Home
+                </a>
+                
+                <button id="theme-toggle" class="p-2.5 rounded-xl border border-cyan-200 dark:border-indigo-500/30 bg-cyan-500/5 dark:bg-indigo-950/40 text-cyan-700 dark:text-indigo-300 hover:bg-cyan-500/10 dark:hover:bg-indigo-950/80 transition-colors" aria-label="Toggle theme">
+                    <i id="theme-icon" data-lucide="moon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </nav>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 pb-24">
-        <div class="grid grid-cols-1 gap-12">
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 pt-32 pb-24">
+        
+        <!-- Showcase Heading Header -->
+        <div class="text-center space-y-3 mb-16">
+            <h1 class="text-xs font-bold text-blue-600 dark:text-purple-400 uppercase tracking-widest">Engineering Sandbox</h1>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white">AI & ML System Implementations</h2>
+            <p class="text-slate-500 dark:text-indigo-300 max-w-xl mx-auto text-sm md:text-base">A complete list of production-ready machine learning architectures and backend pipelines.</p>
+        </div>
+
+        <!-- Project Cards in Single-Bar High-Density Format -->
+        <div class="space-y-6">
             
-            <section class="reveal glass rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl project-card active">
-                <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                    <div class="flex items-center gap-2 text-blue-500 mb-4 font-mono text-sm uppercase tracking-widest">
-                        <i data-lucide="sparkles" class="w-4 h-4"></i> AI Ecosystem
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4">Thambi AI</h3>
-                    <p class="text-slate-400 mb-6 leading-relaxed">
-                        An intelligent automation hub. I built this to bridge mobile accessibility with high-level AI. It uses a Flutter frontend to interact with a Flask backend, leveraging the Gemini API for advanced logic and tasks.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Flutter</span>
-                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Flask (Python)</span>
-                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Gemini API</span>
-                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Automation</span>
-                    </div>
-                    <div class="flex gap-4">
-                        <a href="https://github.com/BhumulaLakshmiNarayanaReddy" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl flex items-center gap-2 transition-all">
-                            <i data-lucide="github" class="w-4 h-4"></i> Source Code
-                        </a>
+            <!-- Project 1: Thambi AI -->
+            <section class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 hover:border-blue-500/40 transition-all">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-blue-600 dark:text-indigo-300">
+                            <i data-lucide="message-square-code" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-indigo-200">Thambi AI</h3>
+                            <p class="text-xs text-blue-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Mobile & Backend Ecosystem</p>
+                        </div>
                     </div>
                 </div>
-                <div class="md:w-1/2 bg-slate-900/50 flex items-center justify-center p-12 relative overflow-hidden">
-                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#3b82f6_0%,_transparent_70%)]"></div>
-                    <i data-lucide="bot" class="w-32 h-32 text-blue-500/20 project-icon transition-transform duration-500"></i>
-                </div>
-            </section>
-
-            <!-- ===================== DUPLICATE PROJECT TEMPLATE ===================== -->
-            <!--
-            <section class="reveal glass rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl project-card">
                 
-                <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                    <div class="flex items-center gap-2 text-blue-500 mb-4 font-mono text-sm uppercase tracking-widest">
-                        <i data-lucide="sparkles" class="w-4 h-4"></i> Project Category
-                    </div>
+                <div class="mb-6">
+                    <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3">
+                        Key Highlights
+                    </h4>
 
-                    <h3 class="text-3xl font-bold mb-4">Project Name</h3>
+                    <ul class="space-y-3 text-sm md:text-base text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-indigo-400 mt-1">•</span>
+                            <span>Developed an intelligent personal assistant using Flutter, Flask, and Gemini API that enables natural language conversations and task automation.</span>
+                        </li>
 
-                    <p class="text-slate-400 mb-6 leading-relaxed">
-                        Short description of your project. Explain what problem it solves,
-                        what you built, and why it is useful.
-                    </p>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-indigo-400 mt-1">•</span>
+                            <span>Integrated application control, website navigation, email assistance, file management, and productivity-focused automation features.</span>
+                        </li>
 
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Tech 1</span>
-                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Tech 2</span>
-                        <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400">Tech 3</span>
-                    </div>
-
-                    <div class="flex gap-4">
-                        <a href="https://github.com/your-repo-link" target="_blank"
-                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl flex items-center gap-2 transition-all">
-                            <i data-lucide="github" class="w-4 h-4"></i> Source Code
-                        </a>
-                    </div>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-indigo-400 mt-1">•</span>
+                            <span>Designed a scalable backend architecture capable of handling AI-powered responses and user requests efficiently.</span>
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="md:w-1/2 bg-slate-900/50 flex items-center justify-center p-12 relative overflow-hidden">
-                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#3b82f6_0%,_transparent_70%)]"></div>
-                    <i data-lucide="code" class="w-32 h-32 text-blue-500/20 project-icon transition-transform duration-500"></i>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-cyan-100 dark:border-indigo-500/20">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Flutter</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Flask</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Gemini API</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Python</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Automation</span>
+                    </div>
+                    <a href="https://github.com/BhumulaLakshmiNarayanaReddy/ThambiAI" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs tracking-wide shadow-md transition-all">
+                        <i class="fa-brands fa-github text-sm"></i> View Codebase
+                    </a>
                 </div>
-
             </section>
-            -->
-            <!-- =================== END DUPLICATE PROJECT TEMPLATE =================== -->
 
-            <section class="reveal glass rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between border-dashed border-2 border-slate-700">
-                <div class="text-center md:text-left">
-                    <h3 class="text-2xl font-bold text-slate-500">More Projects Coming Soon...</h3>
-                    <p class="text-slate-600 mt-2">Currently working on new ML models and API integrations.</p>
+            <!-- Project 2: Classroom Attention Finder -->
+            <section class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 hover:border-indigo-500/40 transition-all">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 dark:bg-purple-500/20 flex items-center justify-center text-indigo-600 dark:text-purple-300">
+                            <i data-lucide="scan-eye" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-indigo-200">Classroom Attention Finder</h3>
+                            <p class="text-xs text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Computer Vision Analytics System</p>
+                        </div>
+                    </div>
+                    <a href="YOUR_LIVE_WEBSITE_URL"
+                        target="_blank"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold hover:scale-105 transition-all">
+                            
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                            Live Demo
+                    </a>
                 </div>
-                <i data-lucide="code" class="w-12 h-12 text-slate-700 mt-6 md:mt-0"></i>
+                
+                <div class="mb-6">
+                    <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3">
+                        Key Highlights
+                    </h4>
+
+                    <ul class="space-y-3 text-sm md:text-base text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-indigo-400 mt-1">•</span>
+                            <span>Built a real-time classroom monitoring system using Python, OpenCV, and MediaPipe to analyze student attentiveness through facial landmarks and eye movement detection.</span>
+                        </li>
+
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-indigo-400 mt-1">•</span>
+                            <span>Implemented computer vision algorithms to track engagement levels and help educators understand classroom participation.</span>
+                        </li>
+
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-indigo-400 mt-1">•</span>
+                            <span>Generates automated attention insights and analytics to support data-driven teaching strategies.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-cyan-100 dark:border-indigo-500/20">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Python</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">MediaPipe</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">OpenCV</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Machine Learning</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Flask</span>
+                    </div>
+                    <a href="https://github.com/BhumulaLakshmiNarayanaReddy/Classroom-Attention-Finder" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs tracking-wide shadow-md transition-all">
+                        <i class="fa-brands fa-github text-sm"></i> View Codebase
+                    </a>
+                </div>
+            </section>
+
+            <!-- Project 3: ATS Analyser -->
+            <section class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 hover:border-blue-500/40 transition-all">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-blue-600 dark:text-indigo-300">
+                            <i data-lucide="file-search" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-indigo-200">ATS Analyser</h3>
+                            <p class="text-xs text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Natural Language Processing Engine</p>
+                        </div>
+                    </div>
+                    <a href="https://ats-score-checker.up.railway.app"
+                        target="_blank"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold hover:scale-105 transition-all">
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                            Live Demo
+                    </a>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3">
+                        Key Highlights
+                    </h4>
+
+                    <ul class="space-y-3 text-sm md:text-base text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-indigo-400 mt-1">•</span>
+                            <span>Developed an intelligent resume analysis system that compares resumes against job descriptions using Natural Language Processing and AI techniques.</span>
+                        </li>
+
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-indigo-400 mt-1">•</span>
+                            <span>Automatically identifies missing keywords, skill gaps, and ATS compatibility issues to help candidates optimize their resumes.</span>
+                        </li>
+
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-indigo-400 mt-1">•</span>
+                            <span>Provides actionable feedback and resume improvement suggestions, increasing the chances of passing ATS screening processes.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-cyan-100 dark:border-indigo-500/20">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Python</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">NLP</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Machine Learning</span>
+                        <span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Flask</span>
+                    </div>
+                    <a href="https://github.com/BhumulaLakshmiNarayanaReddy/ATS-Analyser" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs tracking-wide shadow-md transition-all">
+                        <i class="fa-brands fa-github text-sm"></i> View Codebase
+                    </a>
+                </div>
+            </section>
+
+            <!-- Coming Soon Block -->
+            <section class="reveal glass-light dark:glass-dark dark:bg-indigo-950/20 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between border-dashed border-2 border-cyan-300 dark:border-indigo-500/40">
+                <div class="text-center md:text-left">
+                    <h3 class="text-xl font-bold text-slate-400 dark:text-indigo-400">More Projects Coming Soon...</h3>
+                    <p class="text-slate-500 mt-2 text-sm">Currently training custom Transformers and developing automated LLM pipelines.</p>
+                </div>
+                <div class="p-4 bg-slate-200 dark:bg-indigo-900 rounded-2xl text-slate-500 mt-6 md:mt-0"><i data-lucide="code" class="w-8 h-8"></i></div>
             </section>
 
         </div>
     </main>
 
-    <footer class="py-12 border-t border-slate-800 text-center text-slate-500">
-        <p>© 2024 Lakshmi Narayana Reddy Bhumula. All Rights Reserved.</p>
+    <!-- Footer -->
+    <footer class="py-12 border-t border-cyan-200 dark:border-indigo-950 text-center text-slate-500 text-sm">
+        <p>© 2026 Bhumula Lakshmi Narayana Reddy. All Rights Reserved.</p>
     </footer>
 
+    <!-- Logic Scripting -->
     <script>
         lucide.createIcons();
 
-        function reveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            for (let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveals[i].getBoundingClientRect().top;
-                const elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add('active');
-                }
+        // --- THEME SWAPPING PROTOCOL ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const root = document.documentElement;
+
+        function syncTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                root.classList.add('dark');
+                root.classList.remove('light');
+                themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                root.classList.add('light');
+                root.classList.remove('dark');
+                themeIcon.setAttribute('data-lucide', 'moon');
             }
+            lucide.createIcons();
         }
-        window.addEventListener('scroll', reveal);
-        reveal();
+
+        themeToggle.addEventListener('click', () => {
+            if (root.classList.contains('dark')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+            syncTheme();
+        });
+
+        syncTheme();
+
+        // --- SMOOTH SCROLL REVEAL ACTIONS ---
+        const revealElements = document.querySelectorAll('.reveal');
+        function triggerReveal() {
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                if (rect.top < windowHeight - 80) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', triggerReveal);
+        window.addEventListener('load', triggerReveal);
     </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,6 +84,20 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        html.dark #mobile-menu {
+            background: #111827 !important;
+            color: #e0e7ff;
+        }
+        html.dark #mobile-menu .mobile-nav-link {
+            color: #e0e7ff !important;
+        }
+        html.dark #mobile-menu .mobile-nav-link:hover,
+        html.dark #mobile-menu .mobile-nav-link:focus-visible,
+        html.dark #mobile-menu .mobile-nav-link.text-blue-600 {
+            color: #ffffff !important;
+            background-color: rgba(79, 70, 229, 0.35);
+        }
     </style>
 </head>
 <body class="bg-lightBg text-slate-900 dark:bg-darkBg dark:text-slate-100 transition-colors duration-300">
@@ -116,9 +130,10 @@
                 <li><a href="#about" class="nav-link hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200">About</a></li>
                 <li><a href="#skills" class="nav-link hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200">Skills</a></li>
                 <li><a href="#experience" class="nav-link hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200">Experience</a></li>
+                <li><a href="#projects" class="nav-link hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200">Projects</a></li>
                 <li><a href="#education" class="nav-link hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200">Education</a></li>
                 <li><a href="#certificates" class="nav-link hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200">Certificates</a></li>
-                <li><a href="projects.html" class="nav-link hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200 flex items-center gap-1">Projects <i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
+                <li><a href="#achievements" class="nav-link hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200">Achievements</a></li>
                 <li><a href="#contact" class="nav-link hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200">Contact</a></li>
             </ul>
 
@@ -128,7 +143,7 @@
                     <i id="theme-icon" data-lucide="moon" class="w-5 h-5"></i>
                 </button>
 
-                <a href="assets/resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-medium text-sm shadow-md hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all">
+                <a href="#resume" id="resume-button" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-medium text-sm shadow-md hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all" onclick="openResumeModal(event)">
                     <i data-lucide="download" class="w-4 h-4"></i> Resume
                 </a>
 
@@ -145,12 +160,13 @@
                 <li><a href="#about" class="mobile-nav-link block py-2 hover:text-blue-600 dark:hover:text-purple-400">About</a></li>
                 <li><a href="#skills" class="mobile-nav-link block py-2 hover:text-blue-600 dark:hover:text-purple-400">Skills</a></li>
                 <li><a href="#experience" class="mobile-nav-link block py-2 hover:text-blue-600 dark:hover:text-purple-400">Experience</a></li>
+                <li><a href="#projects" class="mobile-nav-link block py-2 hover:text-blue-600 dark:hover:text-purple-400">Projects</a></li>
                 <li><a href="#education" class="mobile-nav-link block py-2 hover:text-blue-600 dark:hover:text-purple-400">Education</a></li>
                 <li><a href="#certificates" class="mobile-nav-link block py-2 hover:text-blue-600 dark:hover:text-purple-400">Certificates</a></li>
-                <li><a href="projects.html" class="mobile-nav-link block py-2 hover:text-blue-600 dark:hover:text-purple-400 flex items-center justify-between">Projects <i data-lucide="external-link" class="w-4 h-4"></i></a></li>
+                <li><a href="#achievements" class="mobile-nav-link block py-2 hover:text-blue-600 dark:hover:text-purple-400">Achievements</a></li>
                 <li><a href="#contact" class="mobile-nav-link block py-2 hover:text-blue-600 dark:hover:text-purple-400">Contact</a></li>
                 <li class="pt-2 border-t border-cyan-200 dark:border-indigo-950">
-                    <a href="certificates/aws-cloud-foundations.pdf" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-md">
+                    <a href="#resume" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-md" onclick="openResumeModal(event)">
                         <i data-lucide="download" class="w-4 h-4"></i> Download Resume
                     </a>
                 </li>
@@ -181,7 +197,7 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4">
-                    <a href="projects.html" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all">
+                    <a href="#projects" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all">
                         View Projects <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
                     <a href="#contact" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl border border-cyan-300 dark:border-indigo-500/30 hover:bg-cyan-100 dark:hover:bg-indigo-950/60 text-cyan-800 dark:text-indigo-300 font-semibold transition-all">
@@ -255,19 +271,16 @@
                 <div class="lg:col-span-5 flex flex-col items-center space-y-4">
                     <div class="relative w-full max-w-sm aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl group border border-cyan-200 dark:border-indigo-500/40 bg-slate-800">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
-                        <img id="about-image" src="images/about1.jpg" alt="Gallery representation" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600';">
+                        <img id="about-image" src="images/about.jpeg" alt="Bhumula Lakshmi Narayana Reddy" class="w-full h-full object-cover cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
                         
                         <div class="absolute bottom-6 left-6 right-6 z-20 flex justify-between items-center text-white">
                             <div>
                                 <h4 class="font-bold text-lg">My Life & Journey</h4>
                                 <p class="text-xs text-slate-300">Snapshots of experiences</p>
                             </div>
-                            <button onclick="nextAboutImage()" class="p-3 bg-blue-600 dark:bg-purple-600 hover:bg-blue-500 dark:hover:bg-purple-500 rounded-full text-white shadow-lg transform active:scale-95 transition-all" aria-label="Next snapshot">
-                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                            </button>
                         </div>
                     </div>
-                    <span class="text-xs font-medium text-slate-400 dark:text-indigo-400">Click the arrow to cycle through snapshots</span>
+                    <span class="text-xs font-medium text-slate-400 dark:text-indigo-400">Click the photo to view it full size</span>
                 </div>
 
                 <!-- Biography & Focus Grid (Right 7 cols) -->
@@ -307,6 +320,135 @@
         </div>
     </section>
 
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-24 px-4 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center space-y-3 mb-16">
+                <h2 class="text-xs font-bold text-blue-600 dark:text-purple-400 uppercase tracking-widest">Milestones</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Achievements</h3>
+                <p class="text-slate-500 dark:text-indigo-300 max-w-xl mx-auto text-sm md:text-base">Selected academic and industry milestones from my learning journey.</p>
+            </div>
+
+            <div class="space-y-6">
+                <article class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center">
+                    <img src="images/Achievements1.jpg" alt="AI-ML Virtual Internship certificate" class="w-full md:w-64 aspect-[4/3] object-cover rounded-2xl border border-cyan-200 dark:border-indigo-500/40 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
+                    <div>
+                        <p class="text-xs font-bold text-blue-600 dark:text-purple-400 uppercase tracking-widest mb-2">First Prize &ndash; Spark Tank</p>
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-indigo-200 mb-3">IoT-Based Pond Monitoring System:</h4>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">Developed an IoT-based pond monitoring system to continuously monitor key water-quality parameters such as pH, dissolved oxygen, turbidity, and other environmental conditions. The system also enables remote control of pond aerators/motors based on the monitored parameters to maintain suitable water quality.</p>
+                    </div>
+                </article>
+                <article class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center">
+                    <img src="images/Achievements2.jpg" alt="Cloud Virtual Internship certificate" class="w-full md:w-64 aspect-[4/3] object-cover rounded-2xl border border-cyan-200 dark:border-indigo-500/40 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
+                    <div>
+                        <p class="text-xs font-bold text-blue-600 dark:text-purple-400 uppercase tracking-widest mb-2">First Prize &ndash; Mathemetics Day Event</p>
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-indigo-200 mb-3">College Shortest Path Finder:</h4>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">Developed a shortest-path navigation system using Dijkstra’s algorithm to find the optimal route between two locations within the college campus. The system helps new users easily navigate to any destination on campus by providing the shortest and most efficient path.</p>
+                    </div>
+                </article>
+                <article class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center">
+                    <img src="images/Achievements3.jpg" alt="Google AI-ML internship completion certificate" class="w-full md:w-64 aspect-[4/3] object-cover rounded-2xl border border-cyan-200 dark:border-indigo-500/40 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
+                    <div>
+                        <p class="text-xs font-bold text-blue-600 dark:text-purple-400 uppercase tracking-widest mb-2">First Prize &ndash; Researcher's Day (Research Paper Presentation)</p>
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-indigo-200 mb-3">Self-Healing Machine Learning Model:</h4>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">Presented a research paper on a self-healing machine learning model that detects data drift and adapts the model to changes in incoming data. When the data distribution changes, the system updates the model accordingly to maintain reliable and accurate predictions over time.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 px-4 bg-slate-50 dark:bg-slate-950/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center space-y-3 mb-12">
+                <h2 class="text-xs font-bold text-blue-600 dark:text-purple-400 uppercase tracking-widest">Engineering Sandbox</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">AI & ML System Implementations</h3>
+                <p class="text-slate-500 dark:text-indigo-300 max-w-xl mx-auto text-sm md:text-base">Selected production-ready machine learning architectures and backend pipelines.</p>
+            </div>
+
+            <div class="space-y-6" id="project-list">
+
+                <!-- Thambi AI -->
+                <article class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 hover:border-blue-500/40 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-blue-600 dark:text-indigo-300"><i data-lucide="message-square-code" class="w-6 h-6"></i></div>
+                        <div><h4 class="text-2xl font-extrabold text-slate-900 dark:text-indigo-200">Thambi AI</h4><p class="text-xs text-blue-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Mobile & Backend Ecosystem</p></div>
+                    </div>
+                    <ul class="space-y-3 text-sm md:text-base text-slate-600 dark:text-slate-300 mb-6">
+                        <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Developed an intelligent personal assistant using Flutter, Flask, and Gemini API that enables natural language conversations and task automation.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Integrated application control, website navigation, email assistance, file management, and productivity-focused automation features.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Designed a scalable backend architecture capable of handling AI-powered responses and user requests efficiently.</span></li>
+                    </ul>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-cyan-100 dark:border-indigo-500/20"><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Flutter</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Flask</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Gemini API</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Python</span></div><a href="https://github.com/BhumulaLakshmiNarayanaReddy/ThambiAI" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs tracking-wide shadow-md transition-all"><i class="fa-brands fa-github text-sm"></i> View Codebase</a></div>
+                </article>
+
+                <!-- SupportPilot AI -->
+                <article class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 hover:border-indigo-500/40 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 dark:bg-purple-500/20 flex items-center justify-center text-indigo-600 dark:text-purple-300"><i data-lucide="headset" class="w-6 h-6"></i></div>
+                        <div><h4 class="text-2xl font-extrabold text-slate-900 dark:text-indigo-200">SupportPilot AI</h4><p class="text-xs text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">AI Support & Ticket Intelligence</p></div>
+                    </div>
+                    <ul class="space-y-3 text-sm md:text-base text-slate-600 dark:text-slate-300 mb-6">
+                        <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Developed an AI-powered customer support platform that analyzes support tickets and assists in identifying their priority and required resolution.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Built an end-to-end workflow combining a modern frontend with a FastAPI backend and machine learning-based text classification.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Implemented ticket analysis, confidence scoring, classification workflows, and reusable components for efficient support management.</span></li>
+                    </ul>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-cyan-100 dark:border-indigo-500/20"><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">React.js</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">FastAPI</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Python</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Machine Learning</span></div><a href="https://github.com/BhumulaLakshmiNarayanaReddy/Infosys-project" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs tracking-wide shadow-md transition-all"><i class="fa-brands fa-github text-sm"></i> View Codebase</a></div>
+                </article>
+
+                <!-- Medicine Dispenser -->
+                <article class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 hover:border-blue-500/40 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-blue-600 dark:text-indigo-300"><i data-lucide="pill" class="w-6 h-6"></i></div>
+                        <div><h4 class="text-2xl font-extrabold text-slate-900 dark:text-indigo-200">Medicine Dispenser</h4><p class="text-xs text-blue-600 dark:text-indigo-400 font-bold uppercase tracking-wider">IoT Healthcare Automation System</p></div>
+                    </div>
+                    <ul class="space-y-3 text-sm md:text-base text-slate-600 dark:text-slate-300 mb-6">
+                        <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Developed a smart medicine dispensing system using ESP32 and Blynk IoT to automate medicine delivery according to configured schedules.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Integrated servo motors, ultrasonic sensing, LCD display, LEDs, and a buzzer to automate dispensing and provide medicine pickup notifications.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Implemented Wi-Fi connectivity and remote configuration to support multiple medicine slots and reliable automated dispensing.</span></li>
+                    </ul>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-cyan-100 dark:border-indigo-500/20"><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">ESP32</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Blynk IoT</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">IoT</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Arduino</span></div><a href="https://github.com/BhumulaLakshmiNarayanaReddy/MedicineDispenser" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs tracking-wide shadow-md transition-all"><i class="fa-brands fa-github text-sm"></i> View Codebase</a></div>
+                </article>
+
+                <div id="extra-projects" class="hidden space-y-6">
+
+                    <!-- Rising Waters -->
+                    <article class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 hover:border-blue-500/40 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-blue-600 dark:text-indigo-300"><i data-lucide="waves" class="w-6 h-6"></i></div>
+                            <div><h4 class="text-2xl font-extrabold text-slate-900 dark:text-indigo-200">Rising Waters</h4><p class="text-xs text-blue-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Machine Learning Flood Prediction System</p></div>
+                        </div>
+                        <ul class="space-y-3 text-sm md:text-base text-slate-600 dark:text-slate-300 mb-6">
+                            <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Developed a machine learning-based flood prediction system that analyzes historical weather and rainfall data to assess flood risk.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Implemented data preprocessing, exploratory analysis, and machine learning model evaluation to identify an effective flood prediction approach.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Integrated the trained model with a Flask web application to provide users with an accessible interface for flood risk prediction.</span></li>
+                        </ul>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-cyan-100 dark:border-indigo-500/20"><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Python</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Machine Learning</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Flask</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Data Analysis</span></div><a href="https://github.com/BhumulaLakshmiNarayanaReddy/Rising-Waters" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs tracking-wide shadow-md transition-all"><i class="fa-brands fa-github text-sm"></i> View Codebase</a></div>
+                    </article>
+
+                    <!-- Classroom Attention Finder -->
+                    <article class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 hover:border-indigo-500/40 transition-all">
+                        <div class="flex items-center gap-3 mb-4"><div class="w-12 h-12 rounded-xl bg-indigo-500/10 dark:bg-purple-500/20 flex items-center justify-center text-indigo-600 dark:text-purple-300"><i data-lucide="scan-eye" class="w-6 h-6"></i></div><div><h4 class="text-2xl font-extrabold text-slate-900 dark:text-indigo-200">Classroom Attention Finder</h4><p class="text-xs text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Computer Vision Analytics System</p></div></div>
+                        <ul class="space-y-3 text-sm md:text-base text-slate-600 dark:text-slate-300 mb-6"><li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Built a real-time classroom monitoring system using Python, OpenCV, and MediaPipe to analyze student attentiveness through facial landmarks and eye movement detection.</span></li><li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Implemented computer vision algorithms to track engagement levels and help educators understand classroom participation.</span></li><li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Generates automated attention insights and analytics to support data-driven teaching strategies.</span></li></ul>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-cyan-100 dark:border-indigo-500/20"><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Python</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">MediaPipe</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">OpenCV</span><span class="px-3 py-1 bg-slate-200/50 dark:bg-indigo-950/40 text-slate-700 dark:text-indigo-300 text-xs font-semibold rounded-lg border border-cyan-300 dark:border-indigo-500/30">Flask</span></div><a href="https://github.com/BhumulaLakshmiNarayanaReddy/Classroom-Attention-Finder" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs tracking-wide shadow-md transition-all"><i class="fa-brands fa-github text-sm"></i> View Codebase</a></div>
+                    </article>
+
+                    <!-- ATS Analyser -->
+                    <article class="reveal rounded-3xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 p-6 md:p-8 hover:border-blue-500/40 transition-all">
+                        <div class="flex items-center gap-3 mb-4"><div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-blue-600 dark:text-indigo-300"><i data-lucide="file-search" class="w-6 h-6"></i></div><div><h4 class="text-2xl font-extrabold text-slate-900 dark:text-indigo-200">ATS Analyser</h4><p class="text-xs text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Natural Language Processing Engine</p></div></div>
+                        <ul class="space-y-3 text-sm md:text-base text-slate-600 dark:text-slate-300 mb-6"><li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Developed an intelligent resume analysis system that compares resumes against job descriptions using Natural Language Processing and AI techniques.</span></li><li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Automatically identifies missing keywords, skill gaps, and ATS compatibility issues to help candidates optimize their resumes.</span></li><li class="flex items-start gap-2"><span class="text-blue-600 dark:text-indigo-400 mt-1">•</span><span>Provides actionable feedback and resume improvement suggestions, increasing the chances of passing ATS screening processes.</span></li></ul>
+                        <div class="flex justify-end pt-4 border-t border-cyan-100 dark:border-indigo-500/20"><a href="https://github.com/BhumulaLakshmiNarayanaReddy/ATS-Analyser" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs tracking-wide shadow-md transition-all"><i class="fa-brands fa-github text-sm"></i> View Codebase</a></div>
+                    </article>
+
+                    <section class="reveal glass-light dark:glass-dark dark:bg-indigo-950/20 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between border-dashed border-2 border-cyan-300 dark:border-indigo-500/40"><div class="text-center md:text-left"><h3 class="text-xl font-bold text-slate-400 dark:text-indigo-400">More Projects Coming Soon...</h3><p class="text-slate-500 mt-2 text-sm">Currently training custom Transformers and developing automated LLM pipelines.</p></div><div class="p-4 bg-slate-200 dark:bg-indigo-900 rounded-2xl text-slate-500 mt-6 md:mt-0"><i data-lucide="code" class="w-8 h-8"></i></div></section>
+                </div>
+            </div>
+
+            <div class="text-center mt-8"><button id="toggle-projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-cyan-300 dark:border-indigo-500/30 hover:bg-cyan-100 dark:hover:bg-indigo-950/60 text-cyan-800 dark:text-indigo-300 font-semibold transition-all"><i data-lucide="plus" class="w-4 h-4"></i> See All Projects</button></div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills" class="py-24 px-4 relative">
         <div class="max-w-7xl mx-auto">
@@ -322,7 +464,7 @@
                     <div>
                         <div class="flex items-center gap-3 mb-5">
                             <div class="p-3 bg-blue-500/10 dark:bg-indigo-500/20 rounded-xl text-blue-600 dark:text-indigo-300"><i data-lucide="terminal" class="w-6 h-6"></i></div>
-                            <h4 class="font-bold text-lg text-slate-900 dark:text-indigo-200">Languages</h4>
+                            <h4 class="font-bold text-lg text-slate-900 dark:text-indigo-200">Programming Languages</h4>
                         </div>
                         <div class="flex flex-wrap gap-2.5">
                             <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-blue-500 transition-colors">Python</span>
@@ -339,13 +481,48 @@
                     <div>
                         <div class="flex items-center gap-3 mb-5">
                             <div class="p-3 bg-indigo-500/10 dark:bg-purple-500/20 rounded-xl text-indigo-600 dark:text-purple-300"><i data-lucide="layers" class="w-6 h-6"></i></div>
-                            <h4 class="font-bold text-lg text-slate-900 dark:text-indigo-200">Frameworks & Libs</h4>
+                            <h4 class="font-bold text-lg text-slate-900 dark:text-indigo-200">Frameworks</h4>
                         </div>
                         <div class="flex flex-wrap gap-2.5">
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-indigo-500 transition-colors">React.js</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-indigo-500 transition-colors">Next.js</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-indigo-500 transition-colors">Spring Boot</span>
                             <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-indigo-500 transition-colors">Flask</span>
                             <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-indigo-500 transition-colors">FastAPI</span>
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-indigo-500 transition-colors">Flutter</span>
                             <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-indigo-500 transition-colors">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud Platforms Card -->
+                <div class="p-6 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 hover:border-blue-500/40 transition-colors duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="p-3 bg-blue-500/10 dark:bg-indigo-500/20 rounded-xl text-blue-600 dark:text-indigo-300"><i data-lucide="cloud" class="w-6 h-6"></i></div>
+                            <h4 class="font-bold text-lg text-slate-900 dark:text-indigo-200">Cloud Platforms</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2.5">
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI/ML Card -->
+                <div class="p-6 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 hover:border-indigo-500/40 transition-colors duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="p-3 bg-indigo-500/10 dark:bg-purple-500/20 rounded-xl text-indigo-600 dark:text-purple-300"><i data-lucide="cpu" class="w-6 h-6"></i></div>
+                            <h4 class="font-bold text-lg text-slate-900 dark:text-indigo-200">AI & Machine Learning</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2.5">
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">Scikit-Learn</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">TensorFlow</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">TF-IDF</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">NLP</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">NumPy</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">Pandas</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">OpenCV</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">Model Training</span>
                         </div>
                     </div>
                 </div>
@@ -359,39 +536,8 @@
                         </div>
                         <div class="flex flex-wrap gap-2.5">
                             <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-blue-500 transition-colors">MySQL</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-blue-500 transition-colors">PostgreSQL</span>
                             <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300 hover:border-blue-500 transition-colors">MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI/ML Card -->
-                <div class="p-6 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 hover:border-indigo-500/40 transition-colors duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-3 mb-5">
-                            <div class="p-3 bg-indigo-500/10 dark:bg-purple-500/20 rounded-xl text-indigo-600 dark:text-purple-300"><i data-lucide="cpu" class="w-6 h-6"></i></div>
-                            <h4 class="font-bold text-lg text-slate-900 dark:text-indigo-200">AI & Machine Learning</h4>
-                        </div>
-                        <div class="flex flex-wrap gap-2.5">
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">Machine Learning</span>
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">Deep Learning</span>
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">LLMs</span>
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">TensorFlow</span>
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">Scikit-Learn</span>
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">OpenCV</span>
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">MediaPipe</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cloud Card -->
-                <div class="p-6 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 hover:border-blue-500/40 transition-colors duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-3 mb-5">
-                            <div class="p-3 bg-blue-500/10 dark:bg-indigo-500/20 rounded-xl text-blue-600 dark:text-indigo-300"><i data-lucide="cloud" class="w-6 h-6"></i></div>
-                            <h4 class="font-bold text-lg text-slate-900 dark:text-indigo-200">Cloud Platforms</h4>
-                        </div>
-                        <div class="flex flex-wrap gap-2.5">
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">AWS</span>
                         </div>
                     </div>
                 </div>
@@ -406,9 +552,10 @@
                         <div class="flex flex-wrap gap-2.5">
                             <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">Git</span>
                             <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">GitHub</span>
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">Linux</span>
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">VS Code</span>
-                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">PyCharm</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">AntiGravity</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">RailWay</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">n8n & Zapier</span>
+                            <span class="px-3 py-1.5 bg-slate-200/50 dark:bg-indigo-950/40 border border-cyan-300 dark:border-indigo-500/30 text-sm font-semibold rounded-lg text-slate-800 dark:text-indigo-300">AI Coding Agents</span>
                         </div>
                     </div>
                 </div>
@@ -626,9 +773,9 @@
                 <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar" id="category-filters">
                     <button data-filter="all" class="filter-btn shrink-0 px-4 py-2 text-xs font-bold rounded-lg bg-blue-600 text-white transition-all">All</button>
                     <button data-filter="AWS" class="filter-btn shrink-0 px-4 py-2 text-xs font-semibold rounded-lg bg-cyan-100 dark:bg-indigo-950/40 text-cyan-800 dark:text-indigo-300 hover:bg-cyan-200 dark:hover:bg-indigo-900 transition-all">AWS</button>
-                    <button data-filter="Google" class="filter-btn shrink-0 px-4 py-2 text-xs font-semibold rounded-lg bg-cyan-100 dark:bg-indigo-950/40 text-cyan-800 dark:text-indigo-300 hover:bg-cyan-200 dark:hover:bg-indigo-900 transition-all">Google</button>
                     <button data-filter="NPTEL" class="filter-btn shrink-0 px-4 py-2 text-xs font-semibold rounded-lg bg-cyan-100 dark:bg-indigo-950/40 text-cyan-800 dark:text-indigo-300 hover:bg-cyan-200 dark:hover:bg-indigo-900 transition-all">NPTEL</button>
-                    <button data-filter="Coursera" class="filter-btn shrink-0 px-4 py-2 text-xs font-semibold rounded-lg bg-cyan-100 dark:bg-indigo-950/40 text-cyan-800 dark:text-indigo-300 hover:bg-cyan-200 dark:hover:bg-indigo-900 transition-all">Coursera</button>
+                    <button data-filter="EduSkills" class="filter-btn shrink-0 px-4 py-2 text-xs font-semibold rounded-lg bg-cyan-100 dark:bg-indigo-950/40 text-cyan-800 dark:text-indigo-300 hover:bg-cyan-200 dark:hover:bg-indigo-900 transition-all">EduSkills</button>
+                    <button data-filter="Others" class="filter-btn shrink-0 px-4 py-2 text-xs font-semibold rounded-lg bg-cyan-100 dark:bg-indigo-950/40 text-cyan-800 dark:text-indigo-300 hover:bg-cyan-200 dark:hover:bg-indigo-900 transition-all">Others</button>
                 </div>
 
                 <!-- Live Search Box -->
@@ -640,88 +787,184 @@
 
             <!-- Credentials Responsive Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="certs-grid">
-                
+
                 <!-- Certificate 1 -->
-                <div class="cert-card p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="AWS" data-title="AWS Academy Cloud Foundations">
+                <div class="cert-card p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="Others" data-title="Machine Learning with Python">
+                    <img src="images/Cer1.jpeg" alt="IBM Machine Learning with Python certificate" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
-                            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500"><i class="fa-brands fa-aws text-2xl"></i></div>
-                            <span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded uppercase">AWS</span>
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600">
+                                <i class="fa-solid fa-robot text-2xl"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-blue-500/10 text-blue-600 text-[10px] font-bold rounded uppercase">IBM</span>
                         </div>
-                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">AWS Academy Cloud Foundations</h4>
-                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Cloud computing fundamentals, security, IAM roles, architecture setup, and serverless.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">Machine Learning with Python</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Completed an IBM-authorized course covering machine learning concepts and practical implementation using Python.</p>
                     </div>
                 </div>
 
                 <!-- Certificate 2 -->
-                <div class="cert-card p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="AWS" data-title="AWS Academy Cloud Architecting">
+                <div class="cert-card p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="AWS" data-title="AWS Academy Cloud Foundations">
+                    <img src="images/Cer2.jpeg" alt="AWS Academy Cloud Foundations certificate" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
-                            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500"><i class="fa-brands fa-aws text-2xl"></i></div>
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
+                                <i class="fa-brands fa-aws text-2xl"></i>
+                            </div>
                             <span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded uppercase">AWS</span>
                         </div>
-                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">AWS Academy Cloud Architecting</h4>
-                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Highly available networks, multi-tier hosting, elastic balancers, auto-scaling patterns.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">AWS Academy Cloud Foundations</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Completed AWS Academy training covering cloud computing fundamentals, security, IAM, architecture, and core AWS services.</p>
                     </div>
                 </div>
 
                 <!-- Certificate 3 -->
-                <div class="cert-card p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="Google" data-title="Google AI-ML Virtual Internship Program Certificate">
+                <div class="cert-card p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="NPTEL" data-title="The Joy of Computing using Python">
+                    <img src="images/Cer3.jpg" alt="NPTEL The Joy of Computing using Python certificate" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
-                            <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500"><i class="fa-brands fa-google text-xl"></i></div>
-                            <span class="px-2 py-0.5 bg-red-500/10 text-red-600 text-[10px] font-bold rounded uppercase">Google</span>
+                            <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-600">
+                                <i class="fa-solid fa-code text-2xl"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-red-500/10 text-red-600 text-[10px] font-bold rounded uppercase">NPTEL</span>
                         </div>
-                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">AI-ML Virtual Internship Certificate</h4>
-                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Verified execution of ML workflows, TensorFlow components, and model validation pipeline.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">The Joy of Computing using Python</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Completed a 12-week NPTEL course focused on Python programming and computational problem-solving with a consolidated score of 78%.</p>
                     </div>
                 </div>
 
                 <!-- Certificate 4 -->
-                <div class="cert-card p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="NPTEL" data-title="NPTEL Python for Data Science Certificate">
+                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="AWS" data-title="AWS Academy Cloud Architecting">
+                    <img src="images/AWS2.jpeg" alt="AWS Academy Cloud Architecting certificate" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
-                            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-500"><i data-lucide="school" class="w-5 h-5"></i></div>
-                            <span class="px-2 py-0.5 bg-indigo-500/10 text-indigo-600 text-[10px] font-bold rounded uppercase">NPTEL</span>
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
+                                <i class="fa-brands fa-aws text-2xl"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded uppercase">AWS</span>
                         </div>
-                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">Python for Data Science</h4>
-                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Numpy, Pandas, Matplotlib, Scikit-learn data manipulation techniques and modeling basics.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">AWS Academy Cloud Architecting</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Completed 60 hours of AWS Academy training focused on designing, deploying, and managing scalable cloud architectures.</p>
                     </div>
                 </div>
 
                 <!-- Certificate 5 -->
-                <div class="cert-card p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="Coursera" data-title="Programming for Everybody (Python)">
+                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="AWS" data-title="AWS Academy Cloud Architecting Training Badge">
+                    <img src="images/AWS3.jpeg" alt="AWS Academy Cloud Architecting training badge" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
-                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600"><i data-lucide="award" class="w-5 h-5"></i></div>
-                            <span class="px-2 py-0.5 bg-blue-500/10 text-blue-600 text-[10px] font-bold rounded uppercase">Coursera</span>
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
+                                <i class="fa-brands fa-aws text-2xl"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded uppercase">AWS</span>
                         </div>
-                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">Programming for Everybody</h4>
-                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Core structures, variable bindings, conditional logic steps, functions, and iterations in Python.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">AWS Academy Cloud Architecting Training Badge</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Training badge demonstrating completion of AWS Academy Cloud Architecting coursework and cloud architecture fundamentals.</p>
                     </div>
                 </div>
 
                 <!-- Certificate 6 -->
-                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="Simplilearn" data-title="Getting Started with Python">
+                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="AWS" data-title="AWS Academy Cloud Foundations Training Badge">
+                    <img src="images/AWS4.jpeg" alt="AWS Academy Cloud Foundations training badge" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
-                            <div class="w-10 h-10 rounded-lg bg-blue-400/10 flex items-center justify-center text-blue-400"><i data-lucide="terminal" class="w-5 h-5"></i></div>
-                            <span class="px-2 py-0.5 bg-blue-400/10 text-blue-650 text-[10px] font-bold rounded uppercase">Simplilearn</span>
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
+                                <i class="fa-brands fa-aws text-2xl"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded uppercase">AWS</span>
                         </div>
-                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">Getting Started with Python</h4>
-                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Introductory training on environment variables, modules, scripts, and error syntax manipulation.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">AWS Academy Cloud Foundations Training Badge</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Training badge demonstrating foundational knowledge of AWS cloud concepts, services, security, and cloud architecture.</p>
                     </div>
                 </div>
 
                 <!-- Certificate 7 -->
-                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="Internship" data-title="AWS Cloud Virtual Internship Completion Certificate">
+                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="EduSkills" data-title="Data Analytics Virtual Internship">
+                    <img src="images/EduSkills1.jpg" alt="Data Analytics Virtual Internship certificate" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
-                            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-500"><i data-lucide="briefcase" class="w-5 h-5"></i></div>
-                            <span class="px-2 py-0.5 bg-indigo-500/10 text-indigo-600 text-[10px] font-bold rounded uppercase">Internship</span>
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500">
+                                <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-blue-500/10 text-blue-600 text-[10px] font-bold rounded uppercase">EduSkills</span>
                         </div>
-                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">AWS Cloud Virtual Internship Certificate</h4>
-                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Practical cloud execution verification. Cohort completion endorsed by EduSkills and AICTE partners.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">Data Analytics Virtual Internship</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Completed an 8-week Data Analytics Virtual Internship supported by Google Cloud through the AICTE-EduSkills program.</p>
+                    </div>
+                </div>
+
+                <!-- Certificate 8 -->
+                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="EduSkills" data-title="Cloud Virtual Internship">
+                    <img src="images/EduSkills2.jpeg" alt="Cloud Virtual Internship certificate" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
+                                <i class="fa-brands fa-aws text-2xl"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded uppercase">EduSkills</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">Cloud Virtual Internship</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Completed an 8-week Cloud Virtual Internship with curriculum provided by AWS Academy through the AICTE-EduSkills program.</p>
+                    </div>
+                </div>
+
+                <!-- Certificate 9 -->
+                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="EduSkills" data-title="AI-ML Virtual Internship">
+                    <img src="images/EduSkills3.jpeg" alt="AI-ML Virtual Internship certificate" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500">
+                                <i data-lucide="brain-circuit" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-blue-500/10 text-blue-600 text-[10px] font-bold rounded uppercase">EduSkills</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">AI-ML Virtual Internship</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Completed a 10-week AI-ML Virtual Internship supported by Google for Developers through the AICTE-EduSkills program.</p>
+                    </div>
+                </div>
+
+                <!-- Certificate 10 -->
+                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="NPTEL" data-title="Introduction to Machine Learning">
+                    <img src="images/NPTEL2.jpeg" alt="NPTEL Introduction to Machine Learning certificate" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-600">
+                                <i data-lucide="brain" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-red-500/10 text-red-600 text-[10px] font-bold rounded uppercase">NPTEL</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">Introduction to Machine Learning</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Completed a 12-week NPTEL course introducing fundamental machine learning concepts, techniques, and model development.</p>
+                    </div>
+                </div>
+
+                <!-- Certificate 11 -->
+                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="Others" data-title="GitHub Basics">
+                    <img src="images/others1.jpeg" alt="Simplilearn GitHub Basics certificate" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500">
+                                <i class="fa-brands fa-github text-xl"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-blue-500/10 text-blue-600 text-[10px] font-bold rounded uppercase">Simplilearn</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">GitHub Basics</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Completed GitHub Basics training covering essential concepts for using GitHub and managing software development workflows.</p>
+                    </div>
+                </div>
+
+                <!-- Certificate 12 -->
+                <div class="cert-card extra-cert hidden p-5 rounded-2xl glass-light dark:glass-dark dark:bg-indigo-950/20 border border-cyan-200 dark:border-indigo-500/40 flex flex-col justify-between transform hover:-translate-y-1 transition-all" data-category="Others" data-title="Introduction to Large Language Models">
+                    <img src="images/others2.jpeg" alt="Introduction to Large Language Models certificate" class="w-full h-40 object-cover rounded-xl mb-4 cursor-zoom-in" onclick="openImageModal(this.src, this.alt)">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500">
+                                <i data-lucide="bot" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2 py-0.5 bg-purple-500/10 text-purple-600 text-[10px] font-bold rounded uppercase">Simplilearn</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-indigo-200 text-base mb-1.5">Introduction to Large Language Models</h4>
+                        <p class="text-xs text-slate-500 dark:text-indigo-400 mb-4">Completed introductory training on Large Language Models and their role in modern generative AI applications.</p>
                     </div>
                 </div>
 
@@ -738,13 +981,16 @@
                         View complete certification collection
                     </p>
                 </div>
-            </div>
 
-            <!-- Empty State of search -->
-            <div id="no-certs-fallback" class="hidden text-center py-12">
-                <i data-lucide="info" class="w-10 h-10 text-slate-500 mx-auto mb-3"></i>
-                <h4 class="text-slate-900 dark:text-white font-semibold">No certificates match the query</h4>
-                <p class="text-xs text-slate-500">Try choosing another category or adjusting keywords.</p>
+                <!-- No Results -->
+                <div id="no-certs-fallback" class="hidden col-span-full text-center py-12">
+                    <div class="w-12 h-12 mx-auto rounded-full bg-slate-200 dark:bg-indigo-900 flex items-center justify-center text-slate-500 dark:text-indigo-300 mb-4">
+                        <i data-lucide="search-x" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-700 dark:text-indigo-200">No Certificates Found</h4>
+                    <p class="text-sm text-slate-500 dark:text-indigo-400 mt-2">Try another category or search term.</p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -855,38 +1101,51 @@
         <p class="text-xs">Engineered with high performance Web standards.</p>
     </footer>
 
+    <div id="image-modal" class="hidden fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-sm p-4 md:p-8 flex items-center justify-center" role="dialog" aria-modal="true" aria-label="Full-size image viewer" onclick="closeImageModal(event)">
+        <button type="button" class="absolute top-5 right-5 p-3 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors" aria-label="Close image viewer" onclick="closeImageModal()"><i data-lucide="x" class="w-6 h-6"></i></button>
+        <img id="modal-image" src="" alt="" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl" onclick="event.stopPropagation()">
+    </div>
+
+    <div id="resume-modal" class="hidden fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-sm p-4 md:p-8 flex items-center justify-center" role="dialog" aria-modal="true" aria-label="Resume access form" onclick="closeResumeModal(event)">
+        <div class="w-full max-w-md p-6 md:p-8 rounded-3xl glass-light dark:glass-dark border border-cyan-200 dark:border-indigo-500/40" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-indigo-200">Resume Access</h3>
+                <button type="button" class="p-2 rounded-xl text-slate-500 dark:text-indigo-300 hover:bg-cyan-100 dark:hover:bg-indigo-950" aria-label="Close resume form" onclick="closeResumeModal()"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <form id="resume-form" class="space-y-5">
+                <div>
+                    <label for="resume-name" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-indigo-400 mb-2">Name</label>
+                    <input id="resume-name" name="name" type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-200/50 dark:bg-indigo-950/30 border border-cyan-300 dark:border-indigo-500/40 text-slate-900 dark:text-indigo-100 text-sm focus:outline-none focus:border-blue-500 transition-colors" />
+                </div>
+                <div>
+                    <label for="resume-email" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-indigo-400 mb-2">Email</label>
+                    <input id="resume-email" name="email" type="email" required class="w-full px-4 py-3 rounded-xl bg-slate-200/50 dark:bg-indigo-950/30 border border-cyan-300 dark:border-indigo-500/40 text-slate-900 dark:text-indigo-100 text-sm focus:outline-none focus:border-blue-500 transition-colors" />
+                </div>
+                <p id="resume-feedback" class="hidden text-sm font-semibold text-red-500"></p>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold shadow-lg transition-all">View Resume</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Logic Scripting -->
     <script>
         lucide.createIcons();
 
         // --- THEME SWAPPING PROTOCOL ---
         const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
         const root = document.documentElement;
 
-        function syncTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-                root.classList.add('dark');
-                root.classList.remove('light');
-                themeIcon.setAttribute('data-lucide', 'sun');
-            } else {
-                root.classList.add('light');
-                root.classList.remove('dark');
-                themeIcon.setAttribute('data-lucide', 'moon');
-            }
+        function syncTheme(theme = localStorage.getItem('theme') || 'light') {
+            root.classList.toggle('dark', theme === 'dark');
+            root.classList.toggle('light', theme !== 'dark');
+            themeToggle.innerHTML = `<i id="theme-icon" data-lucide="${theme === 'dark' ? 'sun' : 'moon'}" class="w-5 h-5"></i>`;
             lucide.createIcons();
         }
 
         themeToggle.addEventListener('click', () => {
-            if (root.classList.contains('dark')) {
-                localStorage.setItem('theme', 'light');
-            } else {
-                localStorage.setItem('theme', 'dark');
-            }
-            syncTheme();
+            const nextTheme = root.classList.contains('dark') ? 'light' : 'dark';
+            localStorage.setItem('theme', nextTheme);
+            syncTheme(nextTheme);
         });
 
         syncTheme();
@@ -902,15 +1161,28 @@
             }
         });
 
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
+        const sectionOrder = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'certificates', 'achievements', 'contact'];
+        const pageSections = sectionOrder
+            .map(id => document.getElementById(id))
+            .filter(section => section && section.parentElement === document.body);
+        const firstPageSection = pageSections[0];
+        let insertionPoint = firstPageSection;
+        sectionOrder.forEach(id => {
+            const section = document.getElementById(id);
+            if (section && section.parentElement === document.body) {
+                document.body.insertBefore(section, insertionPoint);
+                insertionPoint = section.nextSibling;
+            }
+        });
 
-        window.addEventListener('scroll', () => {
-            let current = "";
+        const sections = pageSections;
+        const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+
+        function updateActiveNavigation() {
+            let current = sectionOrder[0];
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= sectionTop - 180) {
-                    current = section.getAttribute('id');
+                if (window.pageYOffset >= section.offsetTop - 180) {
+                    current = section.id;
                 }
             });
 
@@ -920,7 +1192,10 @@
                     link.classList.add('text-blue-600', 'dark:text-purple-400', 'font-extrabold');
                 }
             });
-        });
+        }
+
+        window.addEventListener('scroll', updateActiveNavigation);
+        updateActiveNavigation();
 
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1046,49 +1321,111 @@
                 });
         });
 
-        // --- ABOUT snapshots ---
-        let aboutIndex = 1;
-        const totalAboutImages = 13;
-        const extensions = ['.jpg', '.jpeg', '.png', '.JPG', '.PNG'];
+        // --- SAME-PAGE IMAGE VIEWER ---
+        const imageModal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
 
-        function tryLoadImage(imgElement, basePath, index) {
-            let extIndex = 0;
-            function attempt() {
-                if (extIndex >= extensions.length) return;
-                const testUrl = `${basePath}${index}${extensions[extIndex]}`;
-                const tempImg = new Image();
-                tempImg.onload = () => {
-                    imgElement.src = testUrl;
-                    imgElement.style.opacity = 1;
-                };
-                tempImg.onerror = () => {
-                    extIndex++;
-                    attempt();
-                };
-                tempImg.src = testUrl;
+        function openImageModal(src, alt) {
+            modalImage.src = src;
+            modalImage.alt = alt;
+            imageModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeImageModal(event) {
+            if (event && event.target !== imageModal) return;
+            imageModal.classList.add('hidden');
+            modalImage.src = '';
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        const resumeModal = document.getElementById('resume-modal');
+        const resumeForm = document.getElementById('resume-form');
+        const resumeFeedback = document.getElementById('resume-feedback');
+
+        function openResumeModal(event) {
+            event.preventDefault();
+            resumeModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+            document.getElementById('resume-name').focus();
+        }
+
+        function closeResumeModal(event) {
+            if (event && event.target !== resumeModal) return;
+            resumeModal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+            resumeFeedback.classList.add('hidden');
+        }
+
+        resumeForm.addEventListener('submit', event => {
+            event.preventDefault();
+            resumeFeedback.classList.add('hidden');
+
+            if (!resumeForm.checkValidity()) {
+                resumeFeedback.textContent = 'Please enter a valid name and email address.';
+                resumeFeedback.classList.remove('hidden');
+                resumeForm.reportValidity();
+                return;
             }
-            attempt();
-        }
 
-        tryLoadImage(document.getElementById('about-image'), 'images/about', 1);
+            const submitButton = resumeForm.querySelector('button[type="submit"]');
+            const visitorName = document.getElementById('resume-name').value.trim();
+            const visitorEmail = document.getElementById('resume-email').value.trim();
 
-        function nextAboutImage() {
-            const img = document.getElementById('about-image');
-            aboutIndex = (aboutIndex % totalAboutImages) + 1;
-            img.style.opacity = 0.2;
-            setTimeout(() => {
-                tryLoadImage(img, 'images/about', aboutIndex);
-            }, 200);
-        }
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending Request...';
+
+            emailjs.send('service_149148', 'template_6ewm0y3', {
+                from_name: visitorName,
+                reply_to: visitorEmail,
+                subject: 'New Resume Viewer Request',
+                message: `Resume access request from ${visitorName} (${visitorEmail}).`,
+                to_email: 'bhumulalakshminarayanareddy@gmail.com'
+            }).then(() => {
+                const resumeLink = document.createElement('a');
+                resumeLink.href = 'assets/resume.pdf';
+                resumeLink.target = '_blank';
+                resumeLink.rel = 'noopener';
+                resumeLink.click();
+                closeResumeModal();
+            }).catch(() => {
+                resumeFeedback.textContent = 'Unable to send the resume request. Please try again.';
+                resumeFeedback.classList.remove('hidden');
+            }).finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'View Resume';
+            });
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                closeImageModal();
+                closeResumeModal();
+            }
+        });
+
+        const projectToggle = document.getElementById('toggle-projects');
+        const extraProjects = document.getElementById('extra-projects');
+        projectToggle.addEventListener('click', () => {
+            const expanded = !extraProjects.classList.contains('hidden');
+            extraProjects.classList.toggle('hidden', expanded);
+            projectToggle.innerHTML = expanded
+                ? '<i data-lucide="plus" class="w-4 h-4"></i> See All Projects'
+                : '<i data-lucide="minus" class="w-4 h-4"></i> Show Fewer Projects';
+            lucide.createIcons();
+            if (!expanded) triggerReveal();
+        });
 
         // --- CERTIFICATE ENGINE ---
         const filterBtns = document.querySelectorAll('.filter-btn');
-        const certCards = document.querySelectorAll('.cert-card');
+        const certCards = document.querySelectorAll('.cert-card[data-category]');
         const searchInput = document.getElementById('cert-search');
         const fallbackMsg = document.getElementById('no-certs-fallback');
+        const certToggle = document.getElementById("toggle-certificates");
 
         let activeCategory = 'all';
         let searchQuery = '';
+        let certExpanded = false;
 
         function filterAndSearchCertificates() {
             let matchesCount = 0;
@@ -1100,7 +1437,9 @@
                 const matchesCategory = (activeCategory === 'all' || category === activeCategory);
                 const matchesSearch = title.includes(searchQuery);
 
-                if (matchesCategory && matchesSearch) {
+                const isVisible = activeCategory !== 'all' || certExpanded || !card.classList.contains('extra-cert');
+
+                if (matchesCategory && matchesSearch && isVisible) {
                     card.style.display = 'flex';
                     matchesCount++;
                 } else {
@@ -1113,6 +1452,8 @@
             } else {
                 fallbackMsg.classList.add('hidden');
             }
+
+            certToggle.classList.toggle('hidden', activeCategory !== 'all');
         }
 
         filterBtns.forEach(btn => {
@@ -1120,6 +1461,10 @@
                 filterBtns.forEach(b => b.className = "filter-btn shrink-0 px-4 py-2 text-xs font-semibold rounded-lg bg-cyan-100 dark:bg-indigo-950/40 text-cyan-800 dark:text-indigo-300 hover:bg-cyan-200 dark:hover:bg-indigo-900 transition-all");
                 btn.className = "filter-btn shrink-0 px-4 py-2 text-xs font-bold rounded-lg bg-blue-600 text-white transition-all";
                 activeCategory = btn.getAttribute('data-filter');
+                if (activeCategory !== 'all') {
+                    certExpanded = false;
+                    document.querySelectorAll('.extra-cert').forEach(card => card.classList.add('hidden'));
+                }
                 filterAndSearchCertificates();
             });
         });
@@ -1128,25 +1473,13 @@
             searchQuery = e.target.value.toLowerCase().trim();
             filterAndSearchCertificates();
         });
-        const certToggle = document.getElementById("toggle-certificates");
-
         if (certToggle) {
-
-            let certExpanded = false;
 
             certToggle.addEventListener("click", () => {
 
                 certExpanded = !certExpanded;
 
-                document.querySelectorAll(".extra-cert").forEach(card => {
-
-                    if (certExpanded) {
-                        card.classList.remove("hidden");
-                    } else {
-                        card.classList.add("hidden");
-                    }
-
-                });
+                document.querySelectorAll(".extra-cert").forEach(card => card.classList.toggle("hidden", !certExpanded));
 
                 if (certExpanded) {
 
@@ -1181,6 +1514,7 @@
                     `;
                 }
 
+                filterAndSearchCertificates();
                 lucide.createIcons();
             });
         }
